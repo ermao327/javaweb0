@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<note name="aaa"> 
+  <to>George</to>  
+  <from name="aaa">John</from>  
+  <heading>Reminder</heading>  
+  <body>Don't forget the meeting!</body>  
+  <qqq sex="male">www</qqq>
+</note>

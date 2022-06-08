@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        // document.cookie = "username=Bill Gates";
+        // document.cookie = "personname=makesi";
+        // document.cookie = "username=John Doe; expires=Sun, 31 Dec 2023 12:00:00 UTC";
+
+        // document.cookie = "username=Bill Gates; expires=Sun, 31 Dec 2023 12:00:00 UTC; path=/";
+        // document.cookie = "username=Bill Gates; expires=Sun, 31 Dec 2021 12:00:00 UTC; path=/";
+        // console.log(document.cookie)
+
+        //添加和修改cookie
+        function setCookie(name,value,expireDays){
+            var now = new Date();
+            now.setTime(now.getTime()+expireDays*24*60*60*1000)
+            document.cookie = name+"="+value+";expires="+now.toUTCString()+";path=/";
+        }
+        //删除cookie
+        function delCookie(name){
+            var now = new Date();
+            now.setTime(now.getTime()-1000)
+            document.cookie = name+"=111"+";expires="+now.toUTCString()+";path=/";
+        }
+
+        function getCookie(name){
+            let arr = document.cookie.split(";")
+            for (let i = 0; i < arr.length; i++) {
+                let arr2 = arr[i].split("=");
+                if(arr2[0].trim() === name){
+                    console.log(arr2[1].trim())
+                    return arr2[1].trim();
+                }
+            }
+            console.log("没有该cookie")
+            return null;
+        }
+    </script>
+</head>
+<body>
+<button id="add" onclick="setCookie('aaa','111',7)">添加一个cookie</button>
+<button id="del" onclick="delCookie('aaa')">删除一个cookie</button>
+<button id="get" onclick="getCookie('bbb')">获取一个cookie</button>
+
+</body>
+</html>

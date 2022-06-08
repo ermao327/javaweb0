@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload=function(){
+                var btn = document.getElementById("btn")
+                btn.onclick=function(){
+                    // document.getElementById("div1").innerHTML = "helloworld"
+                    // var divs = document.getElementsByTagName("div")
+                    // var divs = document.getElementsByClassName("c1")
+                    var divs = document.querySelectorAll("div.c2 span")
+                    // console.log(divs);
+                    for (let i = 0; i < divs.length; i++) {
+                       divs[i].innerHTML = "helloworld"
+                    }
+                }
+        }
+    </script>
+</head>
+<body>
+    <div id="div1" class="c1">111</div>
+    <div id="div2" class="c2"><span>222</span></div>
+    <div id="div3" class="c1">333</div>
+    <div id="div4" class="c2">444</div>
+    <div id="div5" class="c1">555</div>
+    <div id="div6" class="c2">666</div>
+    <button id="btn">点我</button>
+</body>
+</html>

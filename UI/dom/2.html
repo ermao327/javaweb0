@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            border: 1px solid;
+            width: 200px;
+            height: 200px;
+            background-color: yellow;
+        }
+    </style>
+    <script>
+        window.onload=function(){
+            var div = document.getElementById("div1");
+            var changeBtn = document.getElementById("change");
+            var stopBtn = document.getElementById("stop");
+            stopBtn.disabled = true
+            var interval;
+            changeBtn.onclick=function(){
+                this.disabled = true
+                stopBtn.disabled = false
+                interval = setInterval(function(){
+                    if(div.style.backgroundColor == 'yellow'){
+                        div.style.backgroundColor = 'green'
+                    }
+                    else{
+                        div.style.backgroundColor = 'yellow'
+                    }
+                },100)
+            }
+            stopBtn.onclick=function(){
+                clearInterval(interval)
+                changeBtn.disabled = false
+                stopBtn.disabled = true
+
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="div1"></div>
+    <button id="change">变色</button>
+    <button id="stop">停止</button>
+</body>
+</html>

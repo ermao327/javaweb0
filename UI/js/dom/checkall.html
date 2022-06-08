@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function () {
+            var all = document.getElementById("all");
+            var hobbies = document.getElementsByName("hobby")
+            all.onclick = function () {
+                for (let i = 0; i < hobbies.length; i++) {
+                    hobbies[i].checked = this.checked
+                }
+            }
+            for (let i = 0; i < hobbies.length; i++) {
+                hobbies[i].onclick = function () {
+                    let count = 0;
+                    for (let j = 0; j < hobbies.length; j++) {
+                        if (hobbies[j].checked)
+                            count++
+                    }
+                    if (count == hobbies.length) {
+                        all.checked = true
+                    }
+                    else {
+                        all.checked = false
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <input type="checkbox" id="all">全选<br>
+    <input type="checkbox" name="hobby">音乐
+    <input type="checkbox" name="hobby">运动
+    <input type="checkbox" name="hobby">电影
+    <input type="checkbox" name="hobby">游戏
+    <input type="checkbox" name="hobby">旅游
+</body>
+
+</html>

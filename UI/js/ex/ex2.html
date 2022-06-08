@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //产生10个随机整数[1-80]之间，放到一个数组里
+        //计算他们的和
+        let arr = [];
+        for (let i = 0; i < 10; i++) {
+            arr.push(Math.floor(Math.random()*80+1))
+        }
+        let sum = arr.reduce((t,v)=>t+=v)
+        console.log(sum);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

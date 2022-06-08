@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-3.5.1.min.js"></script>
+    <script>
+        $(function () {
+            $('#all').click(function () {
+                $(':checkbox[name=hobby]').prop('checked', $(this).prop('checked'))
+            })
+            $(':checkbox[name=hobby]').click(function () {
+                // console.log('aaa='+$(':checkbox[name=hobby]').prop('checked'));
+                if (!$(this).prop('checked')) {
+                    $('#all').prop('checked', false)
+                    return
+                }
+                let count = 0
+                $(':checkbox[name=hobby]').each(function(i,e){
+                     if($(e).prop('checked')){
+                         count++
+                     }
+                })
+                if(count == $(':checkbox[name=hobby]').length){
+                    $('#all').prop('checked',true)
+                }
+                else{
+                    $('#all').prop('checked',false)
+                }
+            })
+        })
+    </script>
+</head>
+
+<body>
+    <input type="checkbox" id="all">全选<br>
+    <input type="checkbox" name="hobby" value="1">音乐
+    <input type="checkbox" name="hobby" value="2">运动
+    <input type="checkbox" name="hobby" value="3">电影
+    <input type="checkbox" name="hobby" value="4">游戏
+    <input type="checkbox" name="hobby" value="5">旅游
+</body>
+
+</html>

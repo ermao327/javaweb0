@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var arr = ["aaa","bbb","ccc","ddd","eee"]
+        console.log(arr.toString());
+        console.log(arr.join("@"));
+        console.log(arr.splice(2,0,"www","qqq"));//被删除的元素
+        console.log(arr);//拼接过后的数组
+        var arr2 = ["111","222","333"]
+        console.log(arr.concat(arr2));
+        console.log(arr.slice(1,4));
+        arr.sort()//排序
+        console.log(arr);
+        arr.reverse()//反转
+        console.log(arr);
+
+        var arr3 = [1,3,5,7,9]
+        var arr4 = arr3.map(n=>n*n)//映射
+        console.log(arr4);
+
+        var arr5 = [1,2,3,4,5,6,7,9]
+        var arr6 = arr5.filter(n=>n % 2 != 0)//过滤
+        console.log(arr6);
+
+        var sum = arr5.reduce((total,value)=>total+value)//求和
+        console.log(sum);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

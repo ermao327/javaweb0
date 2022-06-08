@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //其实是一个List 自动扩容
+        var arr = [];
+        arr.push("aaa")
+        arr.push("bbb")
+        arr.push("ccc")
+        // console.log(arr.pop());
+        for (let i = 0; i < arr.length; i++) {
+            console.log(arr[i]);            
+        }
+        console.log("---------------------")
+        for (const i in arr) {
+            console.log(arr[i]);
+        }
+        console.log("---------------------")
+        var jack = {
+            'name': 'jack', 'age': 20, 'sing': function () {
+                console.log(this.name + '正在唱歌');
+            }
+        }
+        for (const key in jack) {
+           console.log(key+"="+jack[key]);
+        }
+        console.log("---------------------")
+        //箭头函数
+        arr.forEach(s=>console.log(s))
+
+        //函数传递
+        function aaa(x,callback){
+            console.log(x);
+            callback(x)
+        }
+
+        aaa(10,x=>console.log(x*x*x))
+        console.log("---------------------")
+        arr.myforeach = function(callback){
+            for (const key in this) {
+                if(key !== 'myforeach')
+               callback(this[key])
+            }
+        }
+        arr.myforeach(s=>console.log(s))
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

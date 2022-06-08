@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            border: 1px solid;
+        }
+        #outer{
+            width: 400px;
+            height: 400px;
+            border: 1px solid;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var div = document.getElementById("div");
+            var outer = document.getElementById("outer");
+            //加多个相同的事件
+            div.addEventListener("dblclick", function () {
+                // this.style.backgroundColor = "red"
+                console.log("里面的事件");
+
+            },true)
+            // div.addEventListener("dblclick", function () {
+            //     this.style.color = "green"
+            // })
+            outer.addEventListener("dblclick", function () {
+                console.log("外面的事件");
+            },true)
+
+
+        }
+    </script>
+</head>
+
+<body>
+    <div id="outer">
+        <div id="div">hello</div>
+    </div>
+</body>
+
+</html>

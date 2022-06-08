@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            margin: 0 auto;
+            width: 800px;
+            height: 800px;
+        }
+
+        img {
+            /* width: 600px;
+            height: 600px; */
+        }
+
+        button {
+            margin: 20px;
+            width: 100px;
+            height: 80px;
+            font-size: 20px;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var arr = ["../img/aaa.jpg", "../img/bbb.jpg", "../img/ccc.jpg", "../img/ddd.jpg", "../img/eee.jpg"]
+            var index = 0;
+            var img = document.getElementById("photo")
+            var pre = document.getElementById("pre")
+            var next = document.getElementById("next")
+            var large = document.getElementById("large")
+            var small = document.getElementById("small")
+            var imgwidth = 600;
+            var imgheight = 600;
+            img.style.width = imgwidth + "px"
+            img.style.height = imgheight + "px"
+            img.src = arr[index]
+            if (index == 0) {
+                pre.disabled = true
+            }
+
+            pre.onclick = function () {
+                index--;
+                img.src = arr[index]
+                next.disabled = false
+                if (index == 0) {
+                    pre.disabled = true
+                }
+            }
+            next.onclick = function () {
+                index++;
+                img.src = arr[index]
+                pre.disabled = false
+                if (index == arr.length - 1) {
+                    next.disabled = true
+                }
+
+            }
+
+            large.onclick = function () {
+                imgwidth = imgwidth * 1.1
+                imgheight = imgheight * 1.1
+                img.style.width = imgwidth+"px"
+                img.style.height = imgheight+"px"
+            }
+
+            small.onclick = function () {
+                imgwidth = imgwidth * 0.9
+                imgheight = imgheight * 0.9
+                img.style.width = imgwidth+"px"
+                img.style.height = imgheight+"px"
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div>
+        <img src="" alt="" id="photo">
+    </div>
+    <div>
+        <button id="pre">上一张</button>
+        <button id="next">下一张</button>
+        <button id="large">放大</button>
+        <button id="small">缩小</button>
+    </div>
+</body>
+
+</html>

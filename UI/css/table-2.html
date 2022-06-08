@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table{
+            width: 500px;
+			height: 250px;
+            border: 1px solid;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        table tbody{
+            background-color: #ddd;
+        }
+        table .even{
+            background-color: #909090;
+        }
+        /* tr{
+            width: 50px;
+            height: 30px;
+        } */
+        caption{
+            border: 1px solid;
+            background-color: #909090;
+            color: aliceblue;
+            height: 30px;
+            line-height: 30px;
+            font-size: 20px;
+        }
+        tr th,td{
+            border: 2px solid;
+            border-top-color: #ddd;
+            border-left-color: #ddd;
+            border-right-color: #666;
+            border-bottom-color: #666;
+            text-align: center;
+            /* padding: 10px; */
+        }
+        tbody tr:hover{
+            background-color: aqua;
+        }
+        tbody tr td:nth-child(4),tbody tr td:nth-child(6){
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <table cellspacing="0">
+		<caption>Product List</caption>
+		<thead>
+			<tr>
+				<th>product</th>
+				<th>ID</th>
+				<th>Country</th>
+				<th>Price</th>
+				<th>Color</th>
+				<th>weight</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<th>Computer</th>
+				<td>C184645</td>
+				<td>China</td>
+				<td>$3200.00</td>
+				<td>Black</td>
+				<td>5.20kg</td>
+			</tr>
+			<tr class="even">
+				<th>TV</th>
+				<td>T 965874</td>
+				<td>Germany</td>
+				<td>$299.95</td>
+				<td>White</td>
+				<td>15.20kg</td>
+			</tr>
+			<tr>
+				<th>Phone</th>
+				<td>P494783</td>
+				<td>France</td>
+				<td>$34.80</td>
+				<td>Green</td>
+				<td>0.90kg</td>
+			</tr>
+			<tr class="even">
+				<th>Recorder</th>
+				<td>R349546</td>
+				<td>China</td>
+				<td>$111.99</td>
+				<td>Silver</td>
+				<td>0.30kg</td>
+			</tr>
+			<tr>
+				<th>Washer</th>
+				<td>W454783</td>
+				<td>Japan</td>
+				<td>$240.80</td>
+				<td>White</td>
+				<td>30.90kg</td>
+			</tr>
+			<tr class="even">
+				<th>Freezer</th>
+				<td>F783990</td>
+				<td>China</td>
+				<td>$191.68</td>
+				<td>blue</td>
+				<td>32.80kg</td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<th>Total</th>
+				<th colspan="5">6 products</th>
+			</tr>
+		</tfoot>
+	</table>
+</body>
+</html>

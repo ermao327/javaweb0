@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="2.html" >
+        <label for="name">用户名:</label><input type="text" name="name" id="name" placeholder="字母数组下划线构成,长度2到4位"
+            value=""  size="20" maxlength="10" title="提示" autofocus pattern="\w{2,4}" ><br>
+        <label for="password">密码:</label><input type="password" name="password" id="password"
+            placeholder="长度为6-16位"><br>
+        <label for="male">性别:</label><input type="radio" name="sex" id="male" checked="checked">男
+        <input type="radio" name="sex" id="female">女<br>
+        <label for="country">国籍:</label><select name="country" id="country" multiple>
+            <option value="china" selected="selected">中国</option>
+            <option value="usa">美国</option>
+            <option value="france">法国</option>
+        </select><br>
+        <label for="sport">爱好</label>
+        <input type="checkbox" name="hobby" id="sport" checked>运动
+        <input type="checkbox" name="hobby" id="music">音乐
+        <input type="checkbox" name="hobby" id="game">游戏<br>
+        <label for="self">自我简介</label>
+        <textarea name="self" id="self" cols="30" rows="10">此处省略800字</textarea><br />
+        <label for="url">url</label>
+        <input type="url" name="url" id="url" required placeholder="必填"><br>
+        <label for="email">email</label>
+        <input type="email" name="email" id="email" required placeholder="必填"><br>
+        <label for="number">number</label>
+        <input type="number" name="number" id="number" required placeholder="必填" min="2" max="8"><br>
+        <label for="date">date</label>
+        <input type="time" name="date" id="date"><br>
+        <label for="range">range</label>
+        <input type="range" name="range" id="range" step="2"><br>
+        <label for="color">color</label>
+        <input type="color" name="color" id="color" step="2"><br>
+        <label for="datalist">dtalist</label>
+        <input type="text" name="datalist" id="datalist" list="stulist"><br>
+        <datalist id="stulist">
+            <option value="张三" label="张三"></option>
+            <option value="张四" label="张四"></option>
+            <option value="张五" label="张五"></option>
+            <option value="王五" label="王五"></option>
+        </datalist>
+        <button type="submit">提交</button>
+        <button type="reset">重置</button>
+    </form>
+</body>
+
+</html>

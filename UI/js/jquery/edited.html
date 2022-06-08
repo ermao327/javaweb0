@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-3.5.1.min.js"></script>
+    <script>
+        $(function(){
+            $("div").dblclick(function(){
+                let _thisdiv =  $(this)
+                _thisdiv.html('<input type="text" class="c1" value="'+_thisdiv.html()+'">')
+                _thisdiv.find('.c1').focus()
+                _thisdiv.find('.c1').blur(function(){
+                    _thisdiv.html($(this).val())
+                })
+            })
+            $('#clone').click(function(){
+               let div1 =  $("div:first").clone(true)
+               div1.insertAfter( $("div:last"))
+            })
+            $('#hide').click(function(){
+            //    $("div").hide('slow')
+               $("div").fadeToggle('slow')
+            })
+
+
+        })
+    </script>
+    <style>
+        div{
+            width: 150px;
+            height: 20px;
+            border: 1px solid;
+        }
+        div .c1{
+            width: 98%;
+            height: 97%;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <button id="clone">复制一个</button>
+    <button id="hide">隐藏</button>
+</body>
+</html>

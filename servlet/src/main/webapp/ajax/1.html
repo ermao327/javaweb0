@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        window.onload=function (){
+            document.getElementById("btn").onclick=function (){
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState === 4 && this.status === 200) {
+                        document.getElementById("text").value =
+                            this.responseText;
+                    }
+                };
+                xhttp.open("GET", "../ajax", true);
+                xhttp.send();
+            }
+        }
+    </script>
+</head>
+<body>
+<input type="text" id="text">
+<button id="btn">点我</button>
+</body>
+</html>

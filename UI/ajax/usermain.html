@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery-3.5.1.min.js"></script>
+    <script>
+        let page = 1;
+
+        function printTable(list) {
+            let tableHtml = " <tr>" +
+                "        <th>用户名</th>" +
+                "        <th>密码</th>" +
+                "        <th>性别</th>" +
+                "        <th>国籍</th>" +
+                "        <th>生日</th>" +
+                "        <th>爱好</th>" +
+                "    </tr>"
+            $.each(list, function (i, u) {
+                tableHtml += "<tr>"
+                tableHtml += "<td>" + u.username + "</td>"
+                tableHtml += "<td>" + u.password + "</td>"
+                tableHtml += "<td>" + u.sex + "</td>"
+                tableHtml += "<td>" + u.country + "</td>"
+                tableHtml += "<td>" + u.birthday + "</td>"
+                tableHtml += "<td>" + u.hobbies.join() + "</td>"
+                tableHtml += "</tr>"
+            })
+            return tableHtml;
+        }
+
+        function pre() {
+            if(page == 1){
+                alert("已经是第一页，没有上一页")
+                return
+            }
+            page--;
+            $.getJSON("http://localhost:8080/servlet_war_exploded/QueryAllUserAjaxServlet?page=" + page
+                , function (list) {
+                    let tableHtml = printTable(list)
+                    $("#tablediv").html(tableHtml);
+                    $("#tablediv").append($('<div><button id="pre" onclick="pre()">上一页</button> ' +
+                        '<button id="next" onclick="next()">下一页</button></div>'))
+                })
+        }
+
+        function next() {
+            page++;
+            $.getJSON("http://localhost:8080/servlet_war_exploded/QueryAllUserAjaxServlet?page=" + page
+                , function (list) {
+                    let tableHtml = printTable(list)
+                    $("#tablediv").html(tableHtml);
+                    $("#tablediv").append($('<div><button id="pre" onclick="pre()">上一页</button> ' +
+                        '<button id="next" onclick="next()">下一页</button></div>'))
+                })
+        }
+        function sexpre() {
+            if(page == 1){
+                alert("已经是第一页，没有上一页")
+                return
+            }
+            page--;
+            $.getJSON("http://localhost:8080/servlet_war_exploded/CheckQueryUserSexServlet?sex="
+                + $("#username1").val()+"&page="+page, function (list) {
+                    let tableHtml = printTable(list)
+                    $("#tablediv").html(tableHtml);
+                    $("#tablediv").append($('<div><button id="pre" onclick="sexpre()">上一页</button> ' +
+                        '<button id="next" onclick="sexnext()">下一页</button></div>'))
+                })
+        }
+
+        function sexnext() {
+            page++;
+            $.getJSON("http://localhost:8080/servlet_war_exploded/CheckQueryUserSexServlet?sex="
+                + $("#username1").val()+"&page="+page, function (list) {
+                    let tableHtml = printTable(list)
+                    $("#tablediv").html(tableHtml);
+                    $("#tablediv").append($('<div><button id="pre" onclick="sexpre()">上一页</button> ' +
+                        '<button id="next" onclick="sexnext()">下一页</button></div>'))
+                })
+        }
+        function countrypre() {
+            if(page == 1){
+                alert("已经是第一页，没有上一页")
+                return
+            }
+            page--;
+            $.getJSON("http://localhost:8080/servlet_war_exploded/CheckQueryUserCountryServlet?country="
+                + $("#username1").val()+"&page="+page, function (list) {
+                let tableHtml = printTable(list)
+                $("#tablediv").html(tableHtml);
+                $("#tablediv").append($('<div><button id="pre" onclick="countrypre()">上一页</button> ' +
+                    '<button id="next" onclick="countrynext()">下一页</button></div>'))
+            })
+        }
+
+        function countrynext() {
+            page++;
+            $.getJSON("http://localhost:8080/servlet_war_exploded/CheckQueryUserCountryServlet?country="
+                + $("#username1").val()+"&page="+page, function (list) {
+                let tableHtml = printTable(list)
+                $("#tablediv").html(tableHtml);
+                $("#tablediv").append($('<div><button id="pre" onclick="countrypre()">上一页</button> ' +
+                    '<button id="next" onclick="countrynext()">下一页</button></div>'))
+            })
+        }
+
+        $(function () {
+            $("#add").click(function () {
+                $("#formdiv").toggle('slow')
+                $("#submitbtn").click(function () {
+                    $.get("http://localhost:8080/servlet_war_exploded/AddUserAjaxServlet?" + $("#myform").serialize(),
+                        function (data) {
+                            if (data === "error_username") {
+                                $("#info").html("操作失败，用户名已存在")
+                            } else if (data === "error_system") {
+                                $("#info").html("操作失败，系统正忙")
+                            } else {
+                                $("#info").html("操作成功")
+                            }
+                        })
+                })
+            })
+
+            $("#modBtn").click(function () {
+                $.getJSON("http://localhost:8080/servlet_war_exploded/PreModUserAjaxServlet?username="
+                    + $("#username").val(), function (user) {
+                    $("#formdiv").show('slow')
+                    $("#myform :text[name=username]").val(user.username)
+                    $("#myform :password[name=password]").val(user.username)
+                    if (user.sex === "男") {
+                        $("#myform :radio[value=男]").prop("checked", true);
+                    } else {
+                        $("#myform :radio[value=女]").prop("checked", true);
+                    }
+                    $("#myform select[name=country]").val(user.country)
+                    $("#myform input[name=birthday]").val(user.birthday)
+                    if (user.hobbies.indexOf("音乐") !== -1) {
+                        $("#myform :checkbox[value=音乐]").prop("checked", true);
+                    }
+                    if (user.hobbies.indexOf("运动") !== -1) {
+                        $("#myform :checkbox[value=运动]").prop("checked", true);
+                    }
+                    if (user.hobbies.indexOf("Java") !== -1) {
+                        $("#myform :checkbox[value=Java]").prop("checked", true);
+                    }
+                })
+            })
+
+            $("#checkquery").click(function () {
+                var b = $('#select option:selected').val();
+                if (b === "nonull") {
+                    $.getJSON("http://localhost:8080/servlet_war_exploded/QueryAllUserAjaxServlet?page=" + page
+                        , function (list) {
+                            let tableHtml = printTable(list)
+                            $("#tablediv").html(tableHtml);
+                            $("#tablediv").append($('<div><button id="pre" onclick="pre()">上一页</button> ' +
+                                '<button id="next" onclick="next()">下一页</button></div>'))
+                        })
+                }
+                if (b === "username") {
+                    $.getJSON("http://localhost:8080/servlet_war_exploded/CheckQueryUserServlet?username="
+                        + $("#username1").val(), function (list) {
+                        let tableHtml = printTable(list)
+                        $("#tablediv").html(tableHtml);
+                    })
+                }
+
+                if (b === "sex") {
+                    $.getJSON("http://localhost:8080/servlet_war_exploded/CheckQueryUserSexServlet?sex="
+                        + $("#username1").val()+"&page="+page, function (list) {
+                        let tableHtml = printTable(list)
+                        $("#tablediv").html(tableHtml);
+                        $("#tablediv").append($('<div><button id="pre" onclick="sexpre()">上一页</button> ' +
+                            '<button id="next" onclick="sexnext()">下一页</button></div>'))
+                    })
+                }
+
+                if (b === "country") {
+                    $.getJSON("http://localhost:8080/servlet_war_exploded/CheckQueryUserCountryServlet?country="
+                        + $("#username1").val()+"&page="+page, function (list) {
+                        let tableHtml = printTable(list)
+                        $("#tablediv").html(tableHtml);
+                        $("#tablediv").append($('<div><button id="pre" onclick="countrypre()">上一页</button> ' +
+                            '<button id="next" onclick="countrynext()">下一页</button></div>'))
+                    })
+                }
+
+            })
+
+        })
+    </script>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid;
+        }
+
+        #formdiv {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<a href="#" id="add">添加一个用户</a><br>
+<input type="text" placeholder="请输入用户名" id="username">
+<button type="button" id="modBtn">修改该用户</button>
+<br>
+查询条件:<select id="select">
+    <option value="nonull">无</option>
+    <option value="username">用户名</option>
+    <option value="sex">性别</option>
+    <option value="country">国籍</option>
+</select>
+<input type="text" id="username1">
+<!--<a href="#" id="queryall">查询</a>-->
+<a href="#" id="checkquery">查询</a>
+<hr/>
+<div id="formdiv">
+    <form id="myform" action="" method="post">
+        用户名:<input name="username" type="text" value=""><br/>
+        密码:<input name="password" type="password" value=""><br>
+        性别:<input type="radio" name="sex" value="男" checked>男
+        <input type="radio" name="sex" value="女">女<br>
+        国籍:<select name="country">
+        <option value="" selected>请选择</option>
+        <option value="中国">中国</option>
+        <option value="美国">美国</option>
+        <option value="法国">法国</option>
+    </select><br>
+        生日:<input type="datetime-local" name="birthday" value=""><br>
+        爱好:
+        <input type="checkbox" name="hobby" value="音乐">音乐
+        <input type="checkbox" name="hobby" value="运动">运动
+        <input type="checkbox" name="hobby" value="Java">Java
+        <br>
+        <button type="button" id="submitbtn">提交</button>
+        <button type="reset">重置</button>
+    </form>
+    <div id="info"></div>
+</div>
+<div id="tablediv"></div>
+</body>
+</html>

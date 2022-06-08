@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery-3.5.1.min.js"></script>
+    <script>
+$(function (){
+$("#username").blur(function (){
+$.get("../CheckUsernameAjaxServlet?username="+$("#username").val(),function (data){
+    if(data === 'username_error'){
+        $("#username").css("background-color",'red');
+        $("#info").html("该用户名已存在")
+    }
+    else if(data === 'system_error'){
+        $("#username").css("background-color",'red');
+        $("#info").html("系统正忙，请稍后再试")
+    }
+    else{
+        $("#username").css("background-color",'green');
+        $("#info").html("")
+    }
+    }
+)
+})
+
+
+})
+    </script>
+</head>
+<body>
+用户名:<input type="text" id="username"><span id="info"></span><br/>
+密码:<input type="text" id="pwd">
+<button>点我</button>
+</body>
+</html>

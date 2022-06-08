@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload=function(){
+            document.getElementById("btn").onclick=function(){
+                var ddd = document.createElement("div")
+                ddd.innerHTML="ddd"
+                var outer = document.getElementById("outer")
+                console.log(outer.firstChild.nextSibling.nextSibling.nextSibling);
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="outer">
+        <div>aaa</div>
+        <div>bbb</div>
+        <div>ccc</div>
+    </div>
+    <button id="btn">添加一个ddd</button>
+</body>
+</html>

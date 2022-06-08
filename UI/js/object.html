@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //晚绑定
+        var obj = new Object();//原始方式
+        obj.name = 'sam'
+        obj.age = 21
+        obj.run = function () {
+            console.log(this.name + "正在跑步");
+        }
+        obj.run();
+        obj.sex = '男'
+        obj.code = function () {
+
+        }
+        //构造函数式 可以重用
+        function Student(name, age) {
+            this.name = name;
+            this.age = age;
+            this.code = function () {
+                console.log(this.name + "正在写代码");
+            }
+        }
+        var sam = new Student('sam', 20);
+        sam.code();
+        var bill = new Student('bill', 30);
+        bill.code()
+        
+        //JSON格式
+        var jack = {
+            'name': 'jack', 'age': 20, 'sing': function () {
+                console.log(this.name + '正在唱歌');
+            }
+        }
+        jack.sing()
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

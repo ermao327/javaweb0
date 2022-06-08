@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            border: 1px solid;
+            height: 800px;
+            width: 800px;
+            text-align: center;
+        }
+    </style>
+    <script>
+        // function aaa(event){
+        //     document.getElementById("div1").innerHTML =             event.clientX+","+event.clientY
+        // }
+        function bbb(event) {
+            // console.log(1111);
+            // console.log(event.keyCode);
+            document.getElementById("div1").innerHTML = event.keyCode
+        }
+        window.onload = function () {
+            document.getElementById("div1").onkeyup = function (event) {
+                console.log(this.value.indexOf("@"));
+                if (this.value.indexOf('@') >= 0) {
+                    this.value = this.value.slice(0,this.value.indexOf("@"))
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <input type="text" id="div1">
+</body>
+
+</html>

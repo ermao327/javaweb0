@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function check() {
+            var username = document.getElementById("username")
+            if (username.value.trim() == '') {
+                alert("用户名不可以为空")
+                return false;
+            }
+            if (!/^\w{2,6}$/.test(username.value)) {
+                alert("用户名必须由长度2-6位的字母、数字和下划线构成")
+                return false
+            }
+            return true
+        }
+
+        function checkNew() {
+            var username = document.getElementById("username")
+            //    if(!username.checkValidity()){
+            //         alert("用户名输入有误")
+            //    }
+            if (username.validity.valueMissing) {
+                alert("用户名不可为空")
+            }
+            else if (username.validity.patternMismatch) {
+                alert("用户名必须由长度2-6位的字母、数字和下划线构成")
+            }
+            else {
+                document.getElementById("myform").submit()
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <form action="1.html" id="myform">
+        <input type="text" id="username" required pattern="\w{2,6}"><br />
+        <button type="button" onclick="checkNew()">提交</button>
+    </form>
+</body>
+
+</html>

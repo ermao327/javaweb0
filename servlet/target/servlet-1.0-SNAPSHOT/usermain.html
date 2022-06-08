@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        window.onload=function (){
+            document.getElementById("modBtn").onclick=function(){
+                var username = document.getElementById("username").value
+                location = "PreModUserServlet?username="+username
+            }
+        }
+    </script>
+</head>
+<body>
+<a href="AddUserServlet">添加一个用户</a><br>
+<input type="text" placeholder="请输入用户名" id="username"><button type="button" id="modBtn">修改该用户</button>
+<br>
+<a href="QueryAllUserServlet">查询所有用户</a>
+</body>
+</html>

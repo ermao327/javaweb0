@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #div1{
+            border: 1px solid;
+            width: 400px;
+            height: 400px;
+            background-color: darkseagreen;
+            visibility:hidden
+        }
+    </style>
+    <script>
+        window.onload=function(){
+            document.getElementById("btn").onclick=function(){
+            document.getElementById("div1").style.visibility='visible'
+            this.innerHTML="隐藏"
+        }
+        }
+        
+    </script>
+</head>
+<body>
+    <div id="div1">
+        I love Java
+    </div>
+    <button id="btn">出现</button>
+</body>
+</html>

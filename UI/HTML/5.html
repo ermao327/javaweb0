@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            border: 1px solid;
+            width: 500px;
+            height: 400px;
+        }
+    </style>
+    <script>
+        function func1() {
+            console.log("页面加载完毕事件");
+        }
+        function func2() {
+            console.log("点击事件");
+        }
+        function func3() {
+            console.log("聚焦事件");
+        }
+        function func4() {
+            console.log("失焦事件");
+        }
+        function func5() {
+            console.log("鼠标放上面事件");
+        }
+        function func6() {
+            console.log("鼠标移开事件");
+        }
+        function func7() {
+            console.log("鼠标移动事件");
+        }
+        function func8() {
+            console.log("双击事件");
+        }
+        function func9() {
+            console.log("改变事件");
+        }
+        function func10(event) {
+            console.log("按键按下去的事件");
+            console.log(event.key);
+        }
+        
+    </script>
+</head>
+<body onload="func1()" onkeydown="func10(event)">
+    <button type="button" onclick="func2()">点我</button><br>
+    <input type="text" name="" id="" onfocus="func3()" onblur="func4()"><br/>
+    <div onmouseover="func5()" onmouseout="func6()" onmousemove="func7()" ondblclick="func8()">测试事件</div>
+    <select name="" id="" onchange="func9()">
+      <option value="1">aaa</option>
+      <option value="2">bbb</option>
+    </select>
+</body>
+</html>

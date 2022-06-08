@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        td {
+            border: 1px solid;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        button {
+            width: 40px;
+            height: 20px;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var btns = document.getElementsByTagName("button")
+            var num1Input = document.getElementById("num1")
+            var num2Input = document.getElementById("num2")
+            var resultInput = document.getElementById("result")
+
+            for (let i = 0; i < btns.length; i++) {
+                btns[i].onclick = function () {
+                    var num1 = parseFloat(num1Input.value);
+                    var num2 = parseFloat(num2Input.value);
+                    var op = this.innerHTML
+                    // if (op === "+")
+                    //     resultInput.value = (num1 + num2).toFixed(2)
+                    // if (op === "-")
+                    //     resultInput.value = (num1 - num2).toFixed(2)
+                    // if (op === "*")
+                    //     resultInput.value = (num1 * num2).toFixed(2)
+                    // if (op === "/")
+                    //     resultInput.value = (num1 / num2).toFixed(2)
+                    //100 + "+" + 8
+                    resultInput.value = eval(num1 + this.innerHTML + num2)
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <table>
+        <tr>
+            <td>数字1</td>
+            <td colspan="4"><input type="number" id="num1" required></td>
+        </tr>
+        <tr>
+            <td>数字2</td>
+            <td colspan="4"><input type="number" id="num2" required></td>
+        </tr>
+        <tr>
+            <td>运算</td>
+            <td><button>+</button></td>
+            <td><button>-</button></td>
+            <td><button>*</button></td>
+            <td><button>/</button></td>
+        </tr>
+        <tr>
+            <td>结果</td>
+            <td colspan="4"><input type="text" readonly id="result"></td>
+        </tr>
+    </table>
+</body>
+
+</html>

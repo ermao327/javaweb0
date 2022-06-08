@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var json = [{
+            'value': 'js',
+            'text': '江苏省',
+            'cities': [
+                {
+                    'value': 'nj',
+                    'text': '南京市',
+                    'districts': [
+                        {
+                            'value': 'www',
+                            'text': '嗡嗡嗡'
+                        },
+                        {
+                            'value': 'qqq',
+                            'text': '钱钱钱'
+                        },
+                        {
+                            'value': 'eee',
+                            'text': '呃呃呃'
+                        }
+                    ]
+                },
+                {
+                    'value': 'sz',
+                    'text': '苏州市',
+                    'districts': [
+                        {
+                            'value': 'www',
+                            'text': '嗡嗡嗡'
+                        },
+                        {
+                            'value': 'qqq',
+                            'text': '钱钱钱'
+                        },
+                        {
+                            'value': 'eee',
+                            'text': '呃呃呃'
+                        }
+                    ]
+                },
+                {
+                    'value': 'xz',
+                    'text': '徐州市',
+                    'districts': [
+                        {
+                            'value': 'www',
+                            'text': '嗡嗡嗡'
+                        },
+                        {
+                            'value': 'qqq',
+                            'text': '钱钱钱'
+                        },
+                        {
+                            'value': 'eee',
+                            'text': '呃呃呃'
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            'value': 'ah',
+            'text': '安徽省',
+            'cities': [
+                {
+                    'value': 'hf',
+                    'text': '合肥市',
+                    'districts': [
+                        {
+                            'value': 'aaa',
+                            'text': '啊啊啊'
+                        },
+                        {
+                            'value': 'bbb',
+                            'text': '不不不'
+                        },
+                        {
+                            'value': 'ccc',
+                            'text': '踩踩踩'
+                        }
+                    ]
+                },
+                {
+                    'value': 'wh',
+                    'text': '芜湖市'
+                },
+                {
+                    'value': 'hs',
+                    'text': '黄山市'
+                }
+            ]
+        },
+        {
+            'value': 'zj',
+            'text': '浙江省',
+            'cities': [
+                {
+                    'value': 'hz',
+                    'text': '杭州市',
+                    'districts': [
+                        {
+                            'value': 'yyy',
+                            'text': '也一样'
+                        },
+                        {
+                            'value': 'uuu',
+                            'text': '你你你'
+                        },
+                        {
+                            'value': 'kkk',
+                            'text': '酷酷酷'
+                        }
+                    ]
+                },
+                {
+                    'value': 'nb',
+                    'text': '宁波市'
+                },
+                {
+                    'value': 'wz',
+                    'text': '温州市'
+                }
+            ]
+        }
+        ]
+        window.onload = function () {
+            var proSel = document.getElementById('province')
+            var citySel = document.getElementById('city')
+            var districtSel = document.getElementById('district')
+            for (let i = 0; i < json.length; i++) {
+                var option = document.createElement("option")
+                option.value = json[i].value
+                option.text = json[i].text
+                proSel.add(option)
+            }
+
+            proSel.onchange = function () {
+                citySel.length = 1
+                var cities = json[this.selectedIndex - 1].cities
+                for (let i = 0; i < cities.length; i++) {
+                    var option = document.createElement("option")
+                    option.value = cities[i].value
+                    option.text = cities[i].text
+                    citySel.add(option)
+                }
+            }
+
+            citySel.onchange = function () {
+                districtSel.length = 1
+                var districts = json[this.selectedIndex - 1].cities[this.selectedIndex - 1].districts
+                for (let i = 0; i < districts.length; i++) {
+                    var option = document.createElement("option")
+                    option.value = districts[i].value
+                    option.text = districts[i].text
+                    districtSel.add(option)
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+    省份:<select id="province" title="请选择省份">
+        <option value="">请选择</option>
+    </select>
+    城市:
+    <select id="city" title="请选择城市">
+        <option value="">请选择</option>
+    </select>
+    区:
+    <select id="district" title="请选择区(县)">
+        <option value="">请选择</option>
+    </select>
+</body>
+
+</html>
