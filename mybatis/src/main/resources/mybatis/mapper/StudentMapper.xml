@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 复杂查询语句写在这里，其他简单语句用注解 -->
+<mapper namespace="mybatis.mapper.StudentMapper">
+<!--    <insert id="insertOne" parameterType="Student" useGeneratedKeys="true" keyColumn="id" keyProperty="id">-->
+<!--        insert into student values(#{id},#{stuno},-->
+<!--                                   #{name},#{birthday},#{country},#{hobby},#{sex},#{tid})-->
+<!--    </insert>-->
+<!--    <update id="updateOne" parameterType="Student">-->
+<!--        update student set stuno=#{stuno},name=#{name},birthday=#{birthday},country=#{country},-->
+<!--                           hobby=#{hobby},sex=#{sex},tid=#{tid} where id=#{id}-->
+<!--    </update>-->
+<!--    <delete id="deleteOne">-->
+<!--        delete from student where id=#{id}-->
+<!--    </delete>-->
+<!--    <select id="selectbyid" resultType="Student">-->
+<!--        select * from student where id=#{id}-->
+<!--    </select>-->
+<!--    <select id="selectAll" resultType="Student">-->
+<!--        select * from student-->
+<!--    </select>-->
+</mapper>
