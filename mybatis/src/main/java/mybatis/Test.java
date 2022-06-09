@@ -35,10 +35,25 @@ public class Test {
 //        final List<Student> students = mapper.selectAll();
 //        System.out.println(students);
 //        mapper.selectbysex(0);
+//        mapper.selectCheck(1);
 
         final TeacherMapper mapper1 = session.getMapper(TeacherMapper.class);
-        final Teacher teacher1 = new Teacher(null, "lz", 43);
-        mapper1.insertOne(teacher1);
+//        final Teacher teacher1 = new Teacher(null, "lz", 43);
+//        mapper1.insertOne(teacher1);
+
+//        final Student student1 = mapper.selectStudentTeacherByIdN1(1);
+//        System.out.println(student1);
+//        System.out.println(student1.getTeacher());
+//
+//        final List<Student> students = mapper.selectAllStudentTeacherN1();
+//        System.out.println(students);
+//        students.forEach(s-> System.out.println(s.getTeacher()));
+
+        final List<Teacher> teachers = mapper1.selectAllTeacherStudentN1();
+        System.out.println(teachers);
+        teachers.forEach(t->{
+            System.out.println(t.getStudents());
+        });
 
         session.commit();
         session.close();

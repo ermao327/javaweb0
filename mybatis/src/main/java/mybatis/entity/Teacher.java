@@ -1,10 +1,20 @@
 package mybatis.entity;
 
+import java.util.List;
+
 public class Teacher {
     private Integer id;
     private String name;
     private Integer age;
+    private List<Student> students;
 
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<Student> students) {
+        this.students = students;
+    }
     @Override
     public String toString() {
         return "Teacher{" +

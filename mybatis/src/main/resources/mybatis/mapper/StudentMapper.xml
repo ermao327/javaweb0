@@ -5,21 +5,61 @@
 
 <!-- 复杂查询语句写在这里，其他简单语句用注解 -->
 <mapper namespace="mybatis.mapper.StudentMapper">
-<!--    <insert id="insertOne" parameterType="Student" useGeneratedKeys="true" keyColumn="id" keyProperty="id">-->
-<!--        insert into student values(#{id},#{stuno},-->
-<!--                                   #{name},#{birthday},#{country},#{hobby},#{sex},#{tid})-->
-<!--    </insert>-->
-<!--    <update id="updateOne" parameterType="Student">-->
-<!--        update student set stuno=#{stuno},name=#{name},birthday=#{birthday},country=#{country},-->
-<!--                           hobby=#{hobby},sex=#{sex},tid=#{tid} where id=#{id}-->
-<!--    </update>-->
-<!--    <delete id="deleteOne">-->
-<!--        delete from student where id=#{id}-->
-<!--    </delete>-->
-<!--    <select id="selectbyid" resultType="Student">-->
-<!--        select * from student where id=#{id}-->
-<!--    </select>-->
-<!--    <select id="selectAll" resultType="Student">-->
-<!--        select * from student-->
-<!--    </select>-->
+    <insert id="insertOne" parameterType="Student" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        insert into student
+        values (#{id}, #{stuno},
+                #{name}, #{birthday}, #{country}, #{hobby}, #{sex}, #{tid})
+    </insert>
+    <update id="updateOne" parameterType="Student">
+        update student
+        set stuno=#{stuno},
+            name=#{name},
+            birthday=#{birthday},
+            country=#{country},
+            hobby=#{hobby},
+            sex=#{sex},
+            tid=#{tid}
+        where id = #{id}
+    </update>
+    <delete id="deleteOne">
+        delete
+        from student
+        where id = #{id}
+    </delete>
+    <select id="selectbyid" resultType="Student">
+        select *
+        from student
+        where id = #{id}
+    </select>
+    <select id="selectAll" resultType="Student">
+        select *
+        from student
+    </select>
+    <select id="selectbytid" resultType="Student">
+        select *
+        from student
+        where tid = #{tid}
+    </select>
+
+
+    <resultMap id="StudentTeacherN1" type="Student">
+        <id column="id" property="id"/>
+<!--        <result column="stuno" property="stuno"/>-->
+<!--        <result column="name" property="name"/>-->
+        <result column="tid" property="tid"/>
+        <association property="teacher" javaType="Teacher"
+                     select="mybatis.mapper.TeacherMapper.selectbyid" column="tid"/>
+    </resultMap>
+
+    <select id="selectStudentTeacherByIdN1" resultMap="StudentTeacherN1">
+        select *
+        from student
+        where id = #{id}
+    </select>
+
+    <select id="selectAllStudentTeacherN1" resultMap="StudentTeacherN1">
+        select *
+        from student
+    </select>
+
 </mapper>
