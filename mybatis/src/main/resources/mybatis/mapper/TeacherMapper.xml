@@ -29,4 +29,31 @@
     <select id="selectAllTeacherStudentN1" resultMap="TeacherStudentN1">
         select * from teacher
     </select>
+
+    <resultMap id="TeacherStudent" type="Teacher">
+        <id column="tid" property="id"/>
+        <result column="tname" property="name"/>
+        <result column="tage" property="age"/>
+        <collection property="students" ofType="Student">
+            <id column="sid" property="id"/>
+            <result column="stuno" property="stuno"/>
+            <result column="sname" property="name"/>
+            <result column="sbirthday" property="birthday"/>
+            <result column="scountry" property="country"/>
+            <result column="shobby" property="hobby"/>
+            <result column="ssex" property="sex"/>
+            <result column="tid" property="tid"/>
+        </collection>
+    </resultMap>
+    <sql id="teachercol">
+        t.id       as tid,
+               t.name     as tname,
+               t.age      as tage
+    </sql>
+    <select id="selectAllTeacherStudent" resultMap="TeacherStudent">
+        select <include refid="mybatis.mapper.StudentMapper.studentcol"/>,
+               <include refid="teachercol"/>
+        from teacher t
+                 left join student s on s.tid = t.id
+    </select>
 </mapper>

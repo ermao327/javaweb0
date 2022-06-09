@@ -25,4 +25,6 @@ public interface TeacherMapper {
     List<Teacher> selectAll();
 
     List<Teacher> selectAllTeacherStudentN1();
+
+    List<Teacher> selectAllTeacherStudent();
 }

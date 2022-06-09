@@ -35,4 +35,8 @@ public interface StudentMapper {
 
     List<Student> selectAllStudentTeacherN1();
 
+    List<Student> selectAllStudentTeacher();
+
+    List<Student> selectAllStudentCourse();
+
 }

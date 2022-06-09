@@ -62,6 +62,6 @@
 		<mappers>
 			<mapper resource="mybatis/mapper/StudentMapper.xml"/>
 			<mapper resource="mybatis/mapper/TeacherMapper.xml"/>
-<!--			<mapper resource="mybatis/mapper/CourseMapper.xml"/>-->
+			<mapper resource="mybatis/mapper/CourseMapper.xml"/>
 		</mappers>
 </configuration>

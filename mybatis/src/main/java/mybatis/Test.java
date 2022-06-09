@@ -49,10 +49,28 @@ public class Test {
 //        System.out.println(students);
 //        students.forEach(s-> System.out.println(s.getTeacher()));
 
-        final List<Teacher> teachers = mapper1.selectAllTeacherStudentN1();
-        System.out.println(teachers);
-        teachers.forEach(t->{
-            System.out.println(t.getStudents());
+//        final List<Teacher> teachers = mapper1.selectAllTeacherStudentN1();
+//        System.out.println(teachers);
+//        teachers.forEach(t->{
+//            System.out.println(t.getStudents());
+//        });
+
+//        final List<Student> students = mapper.selectAllStudentTeacher();
+//        System.out.println(students);
+//        students.forEach(s->{
+//            System.out.println(s.getTeacher());
+//        });
+
+//        final List<Teacher> teachers = mapper1.selectAllTeacherStudent();
+//        System.out.println(teachers);
+//        teachers.forEach(t->{
+//            System.out.println(t.getStudents());
+//        });
+
+        final List<Student> students = mapper.selectAllStudentCourse();
+        System.out.println(students);
+        students.forEach(s->{
+            System.out.println(s.getCourse());
         });
 
         session.commit();

@@ -12,6 +12,15 @@ public class Student {
     private  Integer sex;
     private  Integer tid;
     private Teacher teacher;
+    private Course course;
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
+    }
 
     public Teacher getTeacher() {
         return teacher;
