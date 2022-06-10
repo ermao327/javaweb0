@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 复杂查询语句写在这里，其他简单语句用注解 -->
+<mapper namespace="mybatis.mapper.TeacherMapper">
+        <insert id="insertOne" parameterType="Teacher" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        insert into teacher values(#{id},#{name},#{age})
+        </insert>
+        <update id="updateOne" parameterType="Teacher">
+        update teacher set name=#{name},age=#{age} where id=#{id}
+        </update>
+        <delete id="deleteOne">
+            delete from teacher where id=#{id}
+        </delete>
+        <select id="selectbyid" resultType="Teacher">
+            select * from teacher where id=#{id}
+        </select>
+        <select id="selectAll" resultType="Teacher">
+            select * from teacher
+        </select>
+    <resultMap id="TeacherStudentN1" type="Teacher">
+        <id column="id" property="id"></id>
+        <collection property="students" ofType="Student" column="id"
+                    select="mybatis.mapper.StudentMapper.selectbytid"/>
+    </resultMap>
+
+    <select id="selectAllTeacherStudentN1" resultMap="TeacherStudentN1">
+        select * from teacher
+    </select>
+
+    <resultMap id="TeacherStudent" type="Teacher">
+        <id column="tid" property="id"/>
+        <result column="tname" property="name"/>
+        <result column="tage" property="age"/>
+        <collection property="students" ofType="Student">
+            <id column="sid" property="id"/>
+            <result column="stuno" property="stuno"/>
+            <result column="sname" property="name"/>
+            <result column="sbirthday" property="birthday"/>
+            <result column="scountry" property="country"/>
+            <result column="shobby" property="hobby"/>
+            <result column="ssex" property="sex"/>
+            <result column="tid" property="tid"/>
+        </collection>
+    </resultMap>
+    <sql id="teachercol">
+        t.id       as tid,
+               t.name     as tname,
+               t.age      as tage
+    </sql>
+    <select id="selectAllTeacherStudent" resultMap="TeacherStudent">
+        select <include refid="mybatis.mapper.StudentMapper.studentcol"/>,
+               <include refid="teachercol"/>
+        from teacher t
+                 left join student s on s.tid = t.id
+    </select>
+</mapper>

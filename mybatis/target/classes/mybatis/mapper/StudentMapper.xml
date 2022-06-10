@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 复杂查询语句写在这里，其他简单语句用注解 -->
+<mapper namespace="mybatis.mapper.StudentMapper">
+    <insert id="insertOne" parameterType="Student" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        insert into student
+        values (#{id}, #{stuno},
+                #{name}, #{birthday}, #{country}, #{hobby}, #{sex}, #{tid})
+    </insert>
+    <update id="updateOne" parameterType="Student">
+        update student
+        set stuno=#{stuno},
+            name=#{name},
+            birthday=#{birthday},
+            country=#{country},
+            hobby=#{hobby},
+            sex=#{sex},
+            tid=#{tid}
+        where id = #{id}
+    </update>
+    <delete id="deleteOne">
+        delete
+        from student
+        where id = #{id}
+    </delete>
+    <select id="selectbyid" resultType="Student">
+        select *
+        from student
+        where id = #{id}
+    </select>
+    <select id="selectAll" resultType="Student">
+        select *
+        from student
+    </select>
+    <select id="selectbytid" resultType="Student">
+        select *
+        from student
+        where tid = #{tid}
+    </select>
+    <resultMap id="StudentTeacherN1" type="Student">
+        <id column="id" property="id"/>
+        <!--        <result column="stuno" property="stuno"/>-->
+        <!--        <result column="name" property="name"/>-->
+        <result column="tid" property="tid"/>
+        <association property="teacher" javaType="Teacher"
+                     select="mybatis.mapper.TeacherMapper.selectbyid" column="tid"/>
+    </resultMap>
+    <select id="selectStudentTeacherByIdN1" resultMap="StudentTeacherN1">
+        select *
+        from student
+        where id = #{id}
+    </select>
+    <select id="selectAllStudentTeacherN1" resultMap="StudentTeacherN1">
+        select *
+        from student
+    </select>
+    <sql id="studentcol">
+            s.id      as sid,
+               s.stuno    as stuno,
+               s.name     as sname,
+               s.birthday as sbirthday,
+               s.country  as scountry,
+               s.hobby    as shobby,
+               s.sex      as ssex,
+               s.tid      as stid
+    </sql>
+
+    <resultMap id="StudentTeacher" type="Student">
+        <id column="sid" property="id"/>
+        <result column="stuno" property="stuno"/>
+        <result column="sname" property="name"/>
+        <result column="sbirthday" property="birthday"/>
+        <result column="scountry" property="country"/>
+        <result column="shobby" property="hobby"/>
+        <result column="ssex" property="sex"/>
+        <result column="stid" property="tid"/>
+        <association property="teacher" javaType="Teacher">
+            <id column="tid" property="id"/>
+            <result column="tname" property="name"/>
+            <result column="tage" property="age"/>
+        </association>
+    </resultMap>
+    <select id="selectAllStudentTeacher" resultMap="StudentTeacher">
+        select<include refid="studentcol"/>,
+        <include refid="mybatis.mapper.TeacherMapper.teachercol"/>
+        from student s
+        left join teacher t on s.tid = t.id
+    </select>
+
+    <resultMap id="StudentCourse" type="Student">
+        <id column="sid" property="id"/>
+        <result column="stuno" property="stuno"/>
+        <result column="sname" property="name"/>
+        <result column="sbirthday" property="birthday"/>
+        <result column="scountry" property="country"/>
+        <result column="shobby" property="hobby"/>
+        <result column="ssex" property="sex"/>
+        <result column="stid" property="tid"/>
+        <collection property="course" ofType="Course">
+            <id column="cno" property="cno"/>
+            <result column="ccname" property="cname"/>
+        </collection>
+    </resultMap>
+    <select id="selectAllStudentCourse" resultMap="StudentCourse">
+        select<include refid="studentcol"/>,
+        <include refid="mybatis.mapper.CourseMapper.coursecol"/>
+        from student s
+        left join score sc on sc.sid = s.id
+        left join course c on sc.cid = c.id
+
+    </select>
+
+    <resultMap id="StudentScore" type="Student">
+        <id column="sid" property="id"/>
+        <result column="stuno" property="stuno"/>
+        <result column="sname" property="name"/>
+        <result column="sbirthday" property="birthday"/>
+        <result column="scountry" property="country"/>
+        <result column="shobby" property="hobby"/>
+        <result column="ssex" property="sex"/>
+        <collection property="scores" ofType="Score">
+            <id column="scid " property="id"/>
+            <result column="score" property="score"/>
+            <association property="course" javaType="Course">
+                <id column="cid" property="id"/>
+                <result column="ccname" property="cname"/>
+            </association>
+        </collection>
+    </resultMap>
+    <select id="selectAllStudentScore" resultMap="StudentScore">
+        select<include refid="studentcol"/>,
+        <include refid="mybatis.mapper.CourseMapper.coursecol"/>,
+        <include refid="mybatis.mapper.ScoreMapper.scorecol"/>
+        from student s
+        left join score sc on sc.sid = s.id
+        left join course c on sc.cid = c.id
+    </select>
+
+
+</mapper>
