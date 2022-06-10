@@ -23,6 +23,7 @@ public class AddUserAjaxServlet extends HttpServlet {
         final String birthday = request.getParameter("birthday");
         final String[] hobbies = request.getParameterValues("hobby");
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        response.setContentType("text/html;charset=utf-8");
         try {
             final User user = new User(username, password, sex, country, dateFormat.parse(birthday), hobbies);
             final boolean b = new UserService().insertOne(user);
