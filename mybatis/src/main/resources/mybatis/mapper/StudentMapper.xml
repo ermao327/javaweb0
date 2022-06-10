@@ -141,4 +141,50 @@
     </select>
 
 
+    <select id="selectSomeStudentTeacher" resultMap="StudentTeacher">
+select<include refid="studentcol"/>,
+        <include refid="mybatis.mapper.TeacherMapper.teachercol"/>
+        from student s
+        left join teacher t on s.tid = t.id
+<where>
+    <if test="stuno != null">
+        <bind name="%stuno%" value="'%' + _parameter.getStuno() + '%'"/>
+        AND  s.stuno like #{%stuno%}
+    </if>
+    <if test="name != null">
+        <bind name="%name%" value="'%' + _parameter.getName() + '%'"/>
+        AND  s.name like #{%name%}
+    </if>
+    <if test="sex != null">
+        AND  s.sex = #{sex}
+    </if>
+    <if test="teacher != null and teacher.name != null">
+        <bind name="%tname%" value="'%' + _parameter.getTeacher().getName() + '%'"/>
+        AND  t.name like #{%tname%}
+    </if>
+</where>
+
+    </select>
+
+    <update id="updateIdNecessary">
+        update student
+        <set>
+            <if test="stuno != null">stuno=#{stuno},</if>
+            <if test="name != null">name=#{name},</if>
+            <if test="country != null">country=#{country},</if>
+            <if test="sex != null">sex=#{sex},</if>
+            <if test="birthday != null">birthday=#{birthday},</if>
+            <if test="hobby != null">hobby=#{hobby},</if>
+        </set>
+        where id=#{id}
+    </update>
+
+    <delete id="deleteSome">
+        delete from student where id in
+        <foreach item="item" index="index"
+                 collection="array" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
 </mapper>

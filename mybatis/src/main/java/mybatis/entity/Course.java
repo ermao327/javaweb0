@@ -1,11 +1,31 @@
 package mybatis.entity;
 
+import java.util.List;
+
 public class Course {
     private Integer id;
     private String cno;
     private String cname;
     private Integer points;
     private String img;
+    private List<Score> scores;
+
+    public List<Score> getScores() {
+        return scores;
+    }
+
+    public void setScores(List<Score> scores) {
+        this.scores = scores;
+    }
+    private List<Student> students;
+
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<Student> students) {
+        this.students = students;
+    }
 
     @Override
     public String toString() {

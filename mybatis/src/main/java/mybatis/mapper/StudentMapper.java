@@ -41,4 +41,6 @@ public interface StudentMapper {
 
     List<Student> selectAllStudentScore();
 
+    List<Student> selectSomeStudentTeacher(Student condition);
+
 }

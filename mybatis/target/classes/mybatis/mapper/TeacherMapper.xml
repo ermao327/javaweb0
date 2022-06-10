@@ -45,11 +45,13 @@
             <result column="tid" property="tid"/>
         </collection>
     </resultMap>
+
     <sql id="teachercol">
         t.id       as tid,
                t.name     as tname,
                t.age      as tage
     </sql>
+
     <select id="selectAllTeacherStudent" resultMap="TeacherStudent">
         select <include refid="mybatis.mapper.StudentMapper.studentcol"/>,
                <include refid="teachercol"/>

@@ -1,7 +1,13 @@
 package mybatis;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import mybatis.entity.Course;
+import mybatis.entity.Score;
 import mybatis.entity.Student;
 import mybatis.entity.Teacher;
+import mybatis.mapper.CourseMapper;
+import mybatis.mapper.ScoreMapper;
 import mybatis.mapper.StudentMapper;
 import mybatis.mapper.TeacherMapper;
 import org.apache.ibatis.io.Resources;
@@ -73,12 +79,33 @@ public class Test {
 //            System.out.println(s.getCourse());
 //        });
 
-        final List<Student> students = mapper.selectAllStudentScore();
-        students.forEach(s->{
-            System.out.println("------------");
-            System.out.println(s);
-            System.out.println("=========================>");
-            s.getScores().forEach(score -> System.out.println(score.getCourse()+":"+score.getScore()));
+//        final List<Student> students = mapper.selectAllStudentScore();
+//        students.forEach(s->{
+//            System.out.println("------------");
+//            System.out.println(s);
+//            System.out.println("=========================>");
+//            s.getScores().forEach(score -> System.out.println(score.getCourse()+":"+score.getScore()));
+//        });
+//        final Student condition = new Student();
+//                condition.setName("s");
+//        final Teacher teacher = new Teacher();
+//        teacher.setName("t1");
+//        condition.setTeacher(teacher);
+//        final List<Student> students = mapper.selectSomeStudentTeacher(condition);
+//        System.out.println(students);
+
+//        final Page<Student> page = PageHelper.startPage(1, 3,"stuno desc");
+//        final List<Student> students = mapper.selectSomeStudentTeacher(condition);
+//        System.out.println(page);
+//        System.out.println(students);
+//        System.out.println(page.getPageNum());
+//        System.out.println(page.getTotal());
+//        System.out.println(page.getPageSize());
+
+        final CourseMapper mapper3 = session.getMapper(CourseMapper.class);
+        final List<Course> courses = mapper3.selectAllCourseStudent();
+        courses.forEach(course -> {
+            course.getScores().forEach(score -> System.out.println(score.getCourse()+":"+score.getScore()));
         });
 
         session.commit();

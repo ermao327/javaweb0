@@ -8,5 +8,29 @@
     <sql id="coursecol">
         c.cname as ccname
     </sql>
-
+    <resultMap id="CourseeStudent" type="Course">
+        <id column="scid" property="id"/>
+        <result column="ccname" property="cname"/>
+        <collection property="scores" ofType="Score">
+            <id column="id " property="id"/>
+            <result column="score" property="score"/>
+            <association property="student" javaType="Student">
+                <id column="sid" property="id"/>
+                <result column="stuno" property="stuno"/>
+                <result column="sname" property="name"/>
+                <result column="sbirthday" property="birthday"/>
+                <result column="scountry" property="country"/>
+                <result column="shobby" property="hobby"/>
+                <result column="ssex" property="sex"/>
+            </association>
+        </collection>
+    </resultMap>
+    <select id="selectAllCourseStudent" resultMap="CourseeStudent">
+        select<include refid="coursecol"/>,
+        <include refid="mybatis.mapper.ScoreMapper.scorecol"/>,
+        <include refid="mybatis.mapper.StudentMapper.studentcol"/>
+        from course c
+        left join score sc on sc.cid = c.id
+        left join student s on s.id = sc.sid
+    </select>
 </mapper>
