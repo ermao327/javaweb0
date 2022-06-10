@@ -1,6 +1,7 @@
 package mybatis.entity;
 
 import java.util.Date;
+import java.util.List;
 
 public class Student {
     private Integer id;
@@ -12,13 +13,22 @@ public class Student {
     private  Integer sex;
     private  Integer tid;
     private Teacher teacher;
-    private Course course;
+    private List<Course> course;
+    private List<Score> scores;
 
-    public Course getCourse() {
+    public List<Score> getScores() {
+        return scores;
+    }
+
+    public void setScores(List<Score> scores) {
+        this.scores = scores;
+    }
+
+    public List<Course> getCourse() {
         return course;
     }
 
-    public void setCourse(Course course) {
+    public void setCourse(List<Course> course) {
         this.course = course;
     }
 

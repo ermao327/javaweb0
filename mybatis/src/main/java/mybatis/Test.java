@@ -67,10 +67,18 @@ public class Test {
 //            System.out.println(t.getStudents());
 //        });
 
-        final List<Student> students = mapper.selectAllStudentCourse();
-        System.out.println(students);
+//        final List<Student> students = mapper.selectAllStudentCourse();
+//        System.out.println(students);
+//        students.forEach(s->{
+//            System.out.println(s.getCourse());
+//        });
+
+        final List<Student> students = mapper.selectAllStudentScore();
         students.forEach(s->{
-            System.out.println(s.getCourse());
+            System.out.println("------------");
+            System.out.println(s);
+            System.out.println("=========================>");
+            s.getScores().forEach(score -> System.out.println(score.getCourse()+":"+score.getScore()));
         });
 
         session.commit();

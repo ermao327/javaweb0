@@ -39,4 +39,6 @@ public interface StudentMapper {
 
     List<Student> selectAllStudentCourse();
 
+    List<Student> selectAllStudentScore();
+
 }
